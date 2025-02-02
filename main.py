@@ -18,5 +18,6 @@ df['sales'] = df['price'] * df['quantity']
 
 df = df[['sales','date','region']]
 
-print(df)
+df.to_csv('data/formattedData.csv')
+
 
