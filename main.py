@@ -20,4 +20,6 @@ df = df[['sales','date','region']]
 
 df.to_csv('data/formattedData.csv')
 
+#df = pd.read_csv('data\formattedData.csv')
+
 
