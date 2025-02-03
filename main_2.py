@@ -19,7 +19,8 @@ app.layout = html.Div([
             style = {
                 'textAlign': 'center',
                 'color' : '#8E67E0'
-            }
+            },
+            id= 'Header'
             ),
     
     dcc.RadioItems(
@@ -48,5 +49,5 @@ def update_graph(radio):
     fig.update_layout(margin={'l': 40, 'b': 40, 't': 10, 'r': 0}, hovermode='closest')
     return fig
 
-    
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
