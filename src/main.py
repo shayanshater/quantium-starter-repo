@@ -11,7 +11,7 @@ def make_dataframe(directory):
     df = pd.concat(frames, axis=0, ignore_index=True)
     
     #select pink morsel
-    df = df[df["product"] == "pink morsel"]
+    #df = df[df["product"] == "pink morsel"]
 
     #create sales column
     df["price"] = df["price"].str.replace("$", "").astype(float)
@@ -19,7 +19,7 @@ def make_dataframe(directory):
     
     
     #create final df
-    df = df[["date", "sales", "region"]]
+    df = df[["date", "sales", "region", 'product']]
     
     # sorting by date
     df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
@@ -66,13 +66,16 @@ def dash_app(df):
     def update_graph(region):
         df_region = df[df["region"] == region]
         
-        fig = px.scatter(x = df_region["date"], y = df_region["sales"])
+        fig = px.scatter(df, x = 'date', y = 'sales', color = 'product')
         
         fig.update_layout(
         plot_bgcolor=colors['background'],
         paper_bgcolor=colors['background'],
         font_color=colors['text']
         )
+        
+        fig.update_yaxes(title = "Sales in the " + region)
+        fig.update_xaxes(title = "Date")
         
         return fig
     return app
